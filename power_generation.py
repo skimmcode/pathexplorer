@@ -5,8 +5,8 @@ import plotly.express as px
 
 # --- Basic Authentication ---
 USER_CREDENTIALS = {
-    "admin": "password123",
-    "user1": "mypassword",
+    "humphrey": "password123@",
+    "eoin": "E1on12@",
 }
 
 if "authenticated" not in st.session_state:
@@ -20,7 +20,8 @@ def login():
         if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
             st.session_state["authenticated"] = True
             st.success("Login successful!")
-            st.experimental_rerun()
+            st.rerun()
+
         else:
             st.error("Invalid username or password!")
 
@@ -141,4 +142,5 @@ if df_preview is not None:
 
 if st.button("Logout"):
     st.session_state["authenticated"] = False
-    st.experimental_rerun()
+    st.rerun()
+
