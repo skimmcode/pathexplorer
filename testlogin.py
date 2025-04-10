@@ -371,21 +371,25 @@ if st.session_state.selected_page == "Home":
     if "authenticated" not in st.session_state:
         st.session_state["authenticated"] = False
 
-    def login():
-        st.title("Login to Access the Dashboard")
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
-        if st.button("Login"):
-            if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
-                st.session_state["authenticated"] = True
-                st.success("Login successful!")
-                st.rerun()
-            else:
-               st.error("Invalid username or password!")
+def login():
+    st.title("Login to Access the Dashboard")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if username in USER_CREDENTIALS and USER_CREDENTIALS[username] == password:
+            st.session_state["authenticated"] = True
+            st.success("Login successful!")
+            st.rerun()
 
-    if not st.session_state["authenticated"]:
-        login()
-        st.stop()
+        else:
+            st.error("Invalid username or password!")
+
+if not st.session_state["authenticated"]:
+    login()
+    st.stop()
+
+
+
 
 
 
@@ -415,7 +419,7 @@ if st.session_state.selected_page == "Home":
             # ✅ Clickable Tile with a Link Reference
             st.markdown(
                 f"""
-                <a href="?selected_page={page_slug}" style="text-decoration: none;">
+                <a href="?selected_page={page_slug}" target="_self" style="text-decoration: none;">
                     <div style="background-color:{tile_color}; 
                                 padding:23px; 
                                 border-radius:8px; 
